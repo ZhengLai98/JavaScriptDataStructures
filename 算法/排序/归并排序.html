@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function ArrayList() {
+        var array=[];
+        this.toString=function () {
+            return array.join();
+        }
+        this.insert=function (item) {
+            array.push(item);
+        }
+        this.mergeSort=function () {
+            array=mergeSortRec(array);
+        }
+        var mergeSortRec=function (array) {
+            var length=array.length;
+            if(length===1){
+                //三个等号和两个等号的区别三个等号要求数据类型也相同，两个等号数据类型不同的时候会产生类型转换值相同就号
+                return array;
+            }
+            var mid=Math.floor(length/2);
+            var left=array.slice(0,mid);
+            var right=array.slice(mid,length);
+            return merge(mergeSortRec(left),mergeSortRec(right));
+        }
+        var merge=function (arr1,arr2) {
+            var result=[],il=0,ir=0;
+            while (il<arr1.length&&ir<arr2.length){
+                if(arr1[il]<arr2[ir]){
+                    result.push(arr1[il++]);
+                }else {
+                    result.push(arr2[ir++]);
+                }
+            }
+            while (il<arr1.length){
+                result.push(arr1[il++]);
+            }
+            while (ir<arr2.length){
+                result.push(arr1[rl++]);
+            }
+            return result;
+        }
+    }
+    function createArrayaList(size) {
+        var arr=new ArrayList();
+        for (var i=size;i>0;i--){
+            arr.insert(i);
+        }
+        return arr;
+    }
+    var array=createArrayaList(10);
+    console.log(array.toString());
+    array.mergeSort();
+    console.log(array.toString());
+</script>
+</body>
+</html>

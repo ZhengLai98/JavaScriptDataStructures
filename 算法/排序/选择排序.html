@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function ArrayList() {
+        var array=[];
+        this.toString=function () {
+            return array.join();
+        }
+        this.insert=function (item) {
+            array.push(item);
+        }
+        this.selectSort=function () {
+            var length=array.length,indexmin;
+            for (var i=0;i<length-1;i++){
+                indexmin=i;
+                for (var j=i;j<length;j++){
+                    if (array[indexmin]>array[j]){
+                        indexmin=j;
+                    }
+                }
+                if(i!==indexmin){
+                    swap(i,indexmin);
+                }
+            }
+        }
+        var swap=function (index1,index2) {
+          var temp= array[index1];
+          array[index1]=array[index2];
+          array[index2]=temp;
+        }
+    }
+    function createArrayaList(size) {
+        var arr=new ArrayList();
+        for (var i=size;i>0;i--){
+            arr.insert(i);
+        }
+        return arr;
+    }
+    var array=createArrayaList(10);
+    console.log(array.toString());
+    array.selectSort();
+    console.log(array.toString());
+</script>
+</body>
+</html
