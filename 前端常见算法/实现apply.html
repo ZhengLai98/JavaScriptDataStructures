@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--将arrpush进一个新数组利用maycall-->
+<script>
+    Function.prototype.myApply=function (obj,arr) {
+        var args=[];
+        let val;
+        for(let i=0;i<arr.length;i++){
+            args.push('arr['+i+']');
+        }
+        obj._fn_=this;
+        val=eval("obj._fn_("+args+")");
+        delete obj._fn_;
+        return val;
+    }
+</script>
+</body>
+</html>

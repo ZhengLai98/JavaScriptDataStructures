@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var oPerson={
+        oName:"rookiebob",
+        oAge:"18",
+        oAddress:{
+            province:"beijing"
+        },
+        ofavorite:[
+            "swimming",
+            {reading:"history book"}
+        ],
+        skill:function(){
+            console.log("bob is coding");
+        }
+    };
+    const oChild = JSON.parse(JSON.stringify(oPerson));
+    //json.stringfy()将对象、数组转换成字符串；json.parse()将字符串转成json对象
+    oChild.oAddress.province="哈尔滨";
+    console.log(oPerson.oAddress.province);
+    console.log(oChild.oAddress.province);
+</script>
+</body>
+</html>

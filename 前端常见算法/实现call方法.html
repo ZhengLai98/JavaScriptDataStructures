@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //对象上的方法，在调用时，this是指向对象的。
+  /*  es6写法
+  Function.prototype.mycall=function (obj,...arg) {
+        obj._fn_=this;
+      let val=obj._fn_(...arg);
+
+        delete obj._fn_;
+        return val;
+    };*/
+  //es3写法
+    Function.prototype.mycall=function (obj) {
+        var arg=[];
+        let val;
+        //排除掉第一个对象参数
+        for (let i=1;i<arguments.length;i++){
+            arg.push('arguments['+i+']');
+        }
+        obj._fn_=this;
+        val=eval('obj._fn_('+arg+')');
+        delete obj._fn_;
+        return val;
+    }
+    var test1={
+        name:"飞毛腿郑同学"
+    };
+    var test2={
+        name:"菜鸟郑同学",
+        fn:function () {
+            console.log(this.name,...arguments);
+        }
+    };
+    console.log("改变指向之前"+test2.name);
+    test2.fn.mycall(test1,1,2,3);
+
+</script>
+</body>
+</html>
