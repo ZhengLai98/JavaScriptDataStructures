@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var oPerson={
+        oName:"rookiebob",
+        oAge:"18",
+        oAddress:{
+            province:"beijing"
+        },
+        ofavorite:[
+            "swimming",
+            {reading:"history book"}
+        ],
+        skill:function(){
+            console.log("bob is coding");
+        }
+    };
+    function clone(obj){
+        var result={};
+        for(key in obj){
+            result[key]=obj[key];
+        }
+        return result;
+    }
+    var oNew=clone(oPerson);
+    console.log(oPerson.oAddress.province);//beijing
+    oNew.oAddress.province="shanghai";
+    console.log(oPerson.oAddress.province);//shanghai
+    /*通过上面的代码，大家能看到，经过对象克隆以后，我修改oNew的地址，
+    发现原对象oPerson也被修改了。这说明对象的克隆不够彻底，
+    那也就是说深度克隆失败！*/
+    //深克隆的实现；
+    //为了保证对象的所有属性都被复制到，我们必须知道如果for循环以后，
+    // 得到的元素仍是Object或者Array，那么需要再次循环，
+    // 直到元素是原始类型或者函数为止。为了得到元素的类型，
+    // 我们定义一个通用函数，用来返回传入对象的类型。
+    function isClass(o){
+        if(o===null) return "Null";
+        if(o===undefined) return "Undefined";
+        return Object.prototype.toString.call(o).slice(8,-1);
+    }
+    /*
+start	必需。规定从何处开始选取。如果是负数，那么它规定从数组尾部开始算起的位置。也就是说，-1 指最后一个元素，-2 指倒数第二个元素，以此类推。
+end	可选。规定从何处结束选取。该参数是数组片断结束处的数组下标。如果没有指定该参数，那么切分的数组包含从 start 到数组结束的所有元素。如果这个参数是负数，那么它规定的是从数组尾部开始算起的元素。
+    （1）为什么不直接用toString方法？这是为了防止对象中的toString方法被重写，为了正确的调用toString()版本，必须间接的调用Function.call()方法
+    * */
+</script>
+</body>
+</html>
