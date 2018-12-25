@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*二叉搜索树只允许左侧存储比根节点小的值，右侧存储比根节点大的值*/
+    //创建BinarySearchTree类中序遍历先序遍历后续遍历的区别在于什么时候遍历父节点
+    //创建二叉搜索树类
+    function BinarySearchTree() {
+        var Node=function (key) {
+            this.key=key;
+            this.left=null;
+            this.right=null;
+        };
+        var root=null;
+        //二叉搜索树的插入
+        this.insert=function (key) {
+            var newNode=new Node(key);
+            if(root===null){
+                root=newNode;
+            }else{
+                insertNode(root,newNode);
+            }
+        };
+        var insertNode=function (node,newnode) {
+            if(newnode.key<node.key){
+                if(node.left===null){
+                    node.left=newnode;
+                }else {
+                    insertNode(node.left,newnode);
+                }
+            }else{
+                if(node.right===null){
+                    node.right=newnode;
+                }else{
+                    insertNode(node.right,newnode);
+                }
+            }
+
+        }
+        //二叉树的中序遍历左中右
+        this.inOrderTreverse=function (callback) {
+            inOrderTreverseNode(root,callback);
+        };
+        var inOrderTreverseNode=function (node,callback) {
+            if(node!=null){
+                inOrderTreverseNode(node.left,callback);
+                callback(node.key);
+                inOrderTreverseNode(node.right,callback)
+            }
+        };
+        //二叉树先序遍历
+        this.preOrderTreverse=function (callback) {
+            preOrderTreverseNode(root,callback);
+        };
+        var preOrderTreverseNode=function (node,callback) {
+            if(node!=null){
+                callback(node.key);
+                preOrderTreverseNode(node.left,callback);
+                preOrderTreverseNode(node.right,callback);
+            }
+        };
+        //二叉树后序遍历
+        this.postOrderTreverse=function (callback) {
+            postOrderTreverseNode(root,callback);
+        };
+        var postOrderTreverseNode=function (node,callback) {
+            if(node!=null){
+                postOrderTreverseNode(node.left,callback);
+                postOrderTreverseNode(node.right,callback);
+                callback(node.key);
+            }
+        }
+    }
+    var tree=new BinarySearchTree();
+    tree.insert(11);
+    tree.insert(7);
+    tree.insert(15);
+    tree.insert(5);
+    tree.insert(3);
+    tree.insert(9);
+    tree.insert(8);
+    tree.insert(10);
+    tree.insert(13);
+    tree.insert(12);
+    tree.insert(14);
+    tree.insert(20);
+    tree.insert(18);
+    tree.insert(25);
+    tree.insert(6);
+    function printNode(value) {
+        console.log(value);
+    }
+    //tree.inOrderTreverse(printNode);
+   // tree.preOrderTreverse(printNode);
+    tree.postOrderTreverse(printNode);
+</script>
+</body>
+</html>
