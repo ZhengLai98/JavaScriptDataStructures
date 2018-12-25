@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function ifReserve(str) {
+            var str1=str.split("").reverse().join("");
+            if(str1==str){
+                console.log("是回文字符串");
+            }
+            else {
+                console.log("不是回文字符串");
+            }
+        }
+        var strTest="abua";
+        ifReserve(strTest);
+    </script>
+</body>
+</html>

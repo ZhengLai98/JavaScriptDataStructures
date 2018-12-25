@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function randomString(n) {
+            let str="djhcgfhdslgfyusahdew6f8dsfsdf";
+            let tmp='';
+            let l=str.length;
+            for (var i=0;i<str.length;i++){
+                tmp+=str.charAt(Math.floor(Math.random()*l));
+                /*random()方法返回大于等于0小于1的一个随机数*/
+            }
+            return tmp;
+        }
+       console.log(randomString(8));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*输入 [10,5,11,7,8,9]输出 6
+    * Q7 找出下列正数组的最大差值比如:
+    * */
+    function getMaxProfit(arr){
+        var minNum=arr[0];
+        var maxProfit=0;
+        for (var i=0;i<arr.length;i++){
+            var currentNum=arr[i];
+            minNum=Math.min(minNum,currentNum);
+            var tempProfit=currentNum-minNum;
+            maxProfit=Math.max(tempProfit,maxProfit);
+        }
+        return maxProfit;
+    }
+    var arrTest=[10,5,11,7,8,9];
+    var result=getMaxProfit(arrTest);
+    console.log(result);
+</script>
+</body>
+</html>

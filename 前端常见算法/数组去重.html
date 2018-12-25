@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function onlyArray(arr) {
+        var obj={};
+        var dataArr=[];
+        for(var i=0;i<arr.length;i++){
+            if(!obj[arr[i]]){
+                obj[arr[i]]=true;
+                dataArr.push(arr[i]);
+            }
+        }
+        return dataArr;
+    }
+    var arrTest=[1,2,3,4,3,2,7,4,7,8,];
+    var result=onlyArray(arrTest);
+    console.log(result);
+</script>
+</body>
+</html>
