@@ -40,7 +40,7 @@
                 }
             }
 
-        }
+        };
         //二叉树的中序遍历左中右
         this.inOrderTreverse=function (callback) {
             inOrderTreverseNode(root,callback);
@@ -73,7 +73,51 @@
                 postOrderTreverseNode(node.right,callback);
                 callback(node.key);
             }
+        };
+        //搜索最小值
+        this.minNum=function () {
+            return minnum(root);
+        };
+        var minnum=function (node) {
+            if(node){
+                while (node&&node.left!=null){
+                    node=node.left;
+                }
+                return node.key;
+            }
+            return null ;
+        };
+        //搜索二叉树最大值
+        this.maxNum=function () {
+            return maxnum(root);
+        };
+        var maxnum=function (node) {
+            if(node){
+                while(node&&node.right!=null){
+                    node=node.right;
+                }
+                return node.key;
+            }
+            return null;
+        };
+        //搜索一个特定的值
+        this.search=function (key) {
+            return searchNode(root,key);
         }
+        var searchNode=function (node,key) {
+            if(node===null){
+                return false;
+            }
+            if(key<node.key){
+                return searchNode(node.left,key);
+            }else if(key>node.key){
+                return searchNode(node.right,key);
+            }else {
+                return true;
+            }
+
+        }
+
     }
     var tree=new BinarySearchTree();
     tree.insert(11);
@@ -96,7 +140,15 @@
     }
     //tree.inOrderTreverse(printNode);
    // tree.preOrderTreverse(printNode);
-    tree.postOrderTreverse(printNode);
+    //tree.postOrderTreverse(printNode);
+   //console.log(tree.minNum());
+    //console.log(tree.maxNum());
+
+    if(tree.search(26)){
+        console.log("该数字存在");
+    }else {
+        console.log("该数字不存在")
+    }
 </script>
 </body>
 </html>
